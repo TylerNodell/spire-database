@@ -1,14 +1,46 @@
 type Query {
   info: String!
-  feed: [Building!]!
+  feed: [Unit!]!
+  buildings: [Building!]!
 }
 
 type Mutation {
   newBuilding(name: String! address: String!): Building!
+  signup(email: String!, phone: String!, password: String!, name: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+  createListing(
+    apt: String!, 
+    sale: Boolean!, 
+    buildingId: Int, 
+    buildingName: String,
+    buildingAddress: String
+  ): Unit
 }
 
 type Building {
   id: ID!
   name: String!
   address: String!
+  units: [Unit]
+}
+
+type Unit {
+  id: ID!
+  apt: String!
+  sale: Boolean!
+  building: Building!
+  agent: Agent
+}
+
+type AuthPayload {
+  token: String
+  agent: Agent
+}
+
+type Agent {
+  id: ID!
+  name: String!
+  phone: String!
+  email: String!
+  units: [Unit]
 }

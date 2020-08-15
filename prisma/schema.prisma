@@ -7,12 +7,13 @@ datasource db {
 // 2
 generator client {
   provider = "prisma-client-js"
+  experimentalFeatures = ["connectOrCreate"]
 }
 
 model Building {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  name      String
+  name      String?
   address   String
   units     Unit[]
 }
@@ -26,8 +27,8 @@ model Unit {
   buildingId Int
   owner      Owner    @relation(fields: [ownerId], references: [id])
   ownerId    Int
-  tenant     Tenant?  @relation(fields: [tenantId], references: [id])
-  tenantId   Int?
+  tenant     Tenant  @relation(fields: [tenantId], references: [id])
+  tenantId   Int
   agent      Agent    @relation(fields: [agentId], references: [id])
   agentId    Int
 }

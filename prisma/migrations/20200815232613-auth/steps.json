@@ -1,0 +1,23 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "Building",
+      "field": "name",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Unit",
+      "field": "tenant",
+      "arity": "Required"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Unit",
+      "field": "tenantId",
+      "arity": "Required"
+    }
+  ]
+}
