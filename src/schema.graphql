@@ -1,0 +1,14 @@
+type Query {
+  info: String!
+  feed: [Building!]!
+}
+
+type Mutation {
+  newBuilding(name: String! address: String!): Building!
+}
+
+type Building {
+  id: ID!
+  name: String!
+  address: String!
+}

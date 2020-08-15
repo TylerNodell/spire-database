@@ -1,0 +1,9 @@
+# Prisma Migrate lockfile v1
+
+20200815180844-init
+20200815182220-building-addition
+20200815182642-removed-links
+20200815185726-name-addition-to-building
+20200815192730-initiate-unit-owner-tenant
+20200815194044-agent
+20200815203414-auth

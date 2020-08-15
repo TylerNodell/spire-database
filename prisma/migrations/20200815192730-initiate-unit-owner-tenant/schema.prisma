@@ -1,0 +1,47 @@
+// 1
+datasource db {
+  provider = "sqlite"
+  url = "***"
+}
+
+// 2
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Building {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  address   String
+  units     Unit[]
+}
+
+model Unit {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  building   Building @relation(fields: [buildingId], references: [id])
+  buildingId Int
+  owner      Owner    @relation(fields: [ownerId], references: [id])
+  ownerId    Int
+  tenant     Tenant   @relation(fields: [tenantId], references: [id])
+  tenantId   Int
+}
+
+model Owner {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  phone     String
+  email     String
+  units     Unit[]
+}
+
+model Tenant {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  phone     String
+  email     String
+  unit      Unit
+}
