@@ -1,0 +1,15 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "DeleteField",
+      "model": "Unit",
+      "field": "ownerId"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Unit",
+      "field": "agentId"
+    }
+  ]
+}

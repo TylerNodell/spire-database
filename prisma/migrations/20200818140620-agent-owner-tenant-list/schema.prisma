@@ -6,7 +6,7 @@ generator client {
 ///
 datasource db {
   provider = "sqlite"
-  url      = "file:./dev.db"
+  url = "***"
 }
 
 model Owner {
@@ -15,7 +15,7 @@ model Owner {
   name      String
   phone     String?  @unique
   email     String?  @unique
-  units      Unit[]
+  Unit      Unit[]
 }
 
 model Tenant {
@@ -24,7 +24,7 @@ model Tenant {
   name      String
   phone     String?  @unique
   email     String?  @unique
-  unit      Unit?    @relation(fields: [unitId], references: [id])
+  Unit      Unit?    @relation(fields: [unitId], references: [id])
   unitId    Int?
 }
 
@@ -35,7 +35,7 @@ model Agent {
   email     String   @unique
   password  String
   phone     String   @unique
-  units      Unit[]
+  Unit      Unit[]
 }
 
 model Building {
@@ -43,18 +43,20 @@ model Building {
   createdAt DateTime @default(now())
   address   String
   name      String?
-  units      Unit[]
+  Unit      Unit[]
 }
 
 model Unit {
   id         Int      @default(autoincrement()) @id
   createdAt  DateTime @default(now())
   buildingId Int
+  ownerId    Int
   tenantId   Int?     @unique
   apt        String
   sale       Boolean
-  agent      Agent[]
-  building   Building @relation(fields: [buildingId], references: [id])
-  owner      Owner[]
-  tenant     Tenant[]
+  agentId    Int
+  Agent      Agent[]
+  Building   Building @relation(fields: [buildingId], references: [id])
+  Owner      Owner[]
+  Tenant     Tenant[]
 }

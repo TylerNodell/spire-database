@@ -50,12 +50,8 @@ function createListing(parent, args, context, info) {
         apt: args.apt,
         sale: args.sale,
         agent: { connect: { id: agentId } },
-        building: {
-            connectOrCreate: {
-                where: { id: args.buildingId},
-                create: { name: args.buildingName, address: args.buildingAddress}
-            }
-        }
+        owner: { connect: { id: args.ownerId }},
+        building: { connect: { id: args.buildingId}}
         }
     })
 }

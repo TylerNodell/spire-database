@@ -6,7 +6,7 @@ generator client {
 ///
 datasource db {
   provider = "sqlite"
-  url      = "file:./dev.db"
+  url = "***"
 }
 
 model Owner {
@@ -50,9 +50,11 @@ model Unit {
   id         Int      @default(autoincrement()) @id
   createdAt  DateTime @default(now())
   buildingId Int
+  ownerId    Int
   tenantId   Int?     @unique
   apt        String
   sale       Boolean
+  agentId    Int
   agent      Agent[]
   building   Building @relation(fields: [buildingId], references: [id])
   owner      Owner[]

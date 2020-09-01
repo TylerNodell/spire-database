@@ -1,0 +1,179 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Building",
+      "field": "units",
+      "type": "Unit",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Building",
+      "field": "Unit"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Unit",
+      "field": "agent",
+      "type": "Agent",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Unit",
+      "field": "building",
+      "type": "Building",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Unit",
+          "field": "building"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Unit",
+          "field": "building"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[buildingId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Unit",
+          "field": "building"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Unit",
+      "field": "owner",
+      "type": "Owner",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Unit",
+      "field": "tenant",
+      "type": "Tenant",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Unit",
+      "field": "Agent"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Unit",
+      "field": "Building"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Unit",
+      "field": "Owner"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Unit",
+      "field": "Tenant"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Owner",
+      "field": "units",
+      "type": "Unit",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Owner",
+      "field": "Unit"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Tenant",
+      "field": "unit",
+      "type": "Unit",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Tenant",
+          "field": "unit"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Tenant",
+          "field": "unit"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[unitId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Tenant",
+          "field": "unit"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Tenant",
+      "field": "Unit"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Agent",
+      "field": "units",
+      "type": "Unit",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Agent",
+      "field": "Unit"
+    }
+  ]
+}

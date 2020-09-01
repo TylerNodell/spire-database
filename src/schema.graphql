@@ -1,7 +1,15 @@
 type Query {
   info: String!
-  feed: [Unit!]!
   buildings: [Building!]!
+  building(id: Int!): Building
+  agents: [Agent!]!
+  agent(id: Int!): Agent
+  units: [Unit!]!
+  unit(id: Int): Unit
+  owners: [Owner!]!
+  owner(id:Int): Owner
+  tenants: [Tenant!]!
+  tenant(id:Int): Tenant
 }
 
 type Mutation {
@@ -11,9 +19,8 @@ type Mutation {
   createListing(
     apt: String!, 
     sale: Boolean!, 
-    buildingId: Int, 
-    buildingName: String,
-    buildingAddress: String
+    buildingId: Int,
+    ownerId: Int
   ): Unit
 }
 
@@ -29,7 +36,19 @@ type Unit {
   apt: String!
   sale: Boolean!
   building: Building!
-  agent: Agent
+  agent: [Agent]
+  owner: [Owner]
+  tenant: Tenant
+  pets: Boolean
+  dogBreed: String
+  storageL: Boolean
+  storageB: Boolean
+  advertisement: String
+  floorplan: String
+  sqft: Float
+  purchasePrice: Float
+  insurance:     String
+  tenantInsurance: String
 }
 
 type AuthPayload {
@@ -43,4 +62,21 @@ type Agent {
   phone: String!
   email: String!
   units: [Unit]
+  altPhone: String
+}
+
+type Owner {
+  id: ID!
+  name: String!
+  phone: String
+  email: String
+  units: [Unit]
+}
+
+type Tenant {
+  id: ID!
+  name: String!
+  phone: String
+  email: String
+  unit: Unit
 }

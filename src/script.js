@@ -6,15 +6,10 @@ const prisma = new PrismaClient()
 
 //3
 async function main() {
-    const newLink = await prisma.link.create({
-        data: {
-            description: 'Fullstack tutorial for GraphQL',
-            url: 'www.howtographql.com'
-        },
-    })
     const newBuilding = await prisma.building.create({
         data: {
-            address: '157 West 57th Street',
+          name: "Park Millenium",
+          address: '157 West 57th Street',
         }
     })
     const allLinks = await prisma.link.findMany()
