@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const { GraphQLError } = require('graphql')
 const { APP_SECRET, getAgentId } = require('../utils')
 
 async function signup(parent, args, context, info) {
@@ -21,15 +22,15 @@ async function signup(parent, args, context, info) {
 
 async function login(parent, args, context, info) {
 // 1
-    const agent = await context.prisma.agent.findOne({ where: { email: args.email } })
+    const agent = await context.prisma.agent.findUnique({ where: { email: args.email } })
     if (!agent) {
-        throw new Error('No such agent found')
+        throw new GraphQLError('No such agent found')
     }
 
     // 2
     const valid = await bcrypt.compare(args.password, agent.password)
     if (!valid) {
-        throw new Error('Invalid password')
+        throw new GraphQLError('Invalid password')
     }
 
     const token = jwt.sign({ agentId: agent.id }, APP_SECRET)

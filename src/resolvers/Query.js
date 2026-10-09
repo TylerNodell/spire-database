@@ -3,7 +3,7 @@ function units(parent, args, context, info) {
 }
 
 function unit(parent, args, context, info) {
-  return context.prisma.unit.findOne({
+  return context.prisma.unit.findUnique({
     where: { id: args.id }
   })
 }
@@ -13,7 +13,7 @@ function buildings(parent, args, context, info){
 }
 
 function building(parent, args, context, info) {
-  return context.prisma.building.findOne({
+  return context.prisma.building.findUnique({
     where: { id: args.id }
   })
 }
@@ -23,7 +23,7 @@ function agents(parent, args, context, info){
 }
 
 function agent(parent, args, context, info) {
-  return context.prisma.agent.findOne({
+  return context.prisma.agent.findUnique({
     where: { id: args.id }
   })
 }
@@ -33,7 +33,7 @@ function owners(parent, args, context, info){
 }
 
 function owner(parent, args, context, info) {
-  return context.prisma.owner.findOne({
+  return context.prisma.owner.findUnique({
     where: { id: args.id }
   })
 }
@@ -43,7 +43,7 @@ function tenants(parent, args, context, info){
 }
 
 function tenant(parent, args, context, info) {
-  return context.prisma.tenant.findOne({
+  return context.prisma.tenant.findUnique({
     where: { id: args.id }
   })
 }

@@ -1,5 +1,5 @@
 function agent(parent, args, context) {
-    return context.prisma.unit.findOne({ where: { id: parent.id } }).agent()
+    return context.prisma.unit.findUnique({ where: { id: parent.id } }).agent()
   }
   
   module.exports = {
