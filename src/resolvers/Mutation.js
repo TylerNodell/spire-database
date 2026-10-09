@@ -4,6 +4,9 @@ const { GraphQLError } = require('graphql')
 const { APP_SECRET, getAgentId } = require('../utils')
 
 async function signup(parent, args, context, info) {
+    if (args.password.length < 8) {
+        throw new GraphQLError('Password must be at least 8 characters')
+    }
 // 1
     const password = await bcrypt.hash(args.password, 10)
 
@@ -11,7 +14,7 @@ async function signup(parent, args, context, info) {
     const agent = await context.prisma.agent.create({ data: { ...args, password } })
 
     // 3
-    const token = jwt.sign({ agentId: agent.id }, APP_SECRET)
+    const token = jwt.sign({ agentId: agent.id }, APP_SECRET, { expiresIn: '7d' })
 
     // 4
     return {
@@ -33,7 +36,7 @@ async function login(parent, args, context, info) {
         throw new GraphQLError('Invalid password')
     }
 
-    const token = jwt.sign({ agentId: agent.id }, APP_SECRET)
+    const token = jwt.sign({ agentId: agent.id }, APP_SECRET, { expiresIn: '7d' })
 
     // 3
     return {

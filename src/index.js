@@ -31,7 +31,10 @@ const yoga = createYoga({
   context: () => ({ prisma }),
   graphqlEndpoint: '/',
   graphiql: process.env.NODE_ENV !== 'production',
-  cors: corsOrigins.length > 0 ? { origin: corsOrigins } : false,
+  // No CORS headers at all for origins that are not listed. Auth uses the
+  // Authorization header, not cookies, so credentials are never allowed.
+  cors: request =>
+    corsOrigins.includes(request.headers.get('origin')) ? { origin: corsOrigins, credentials: false } : false,
 })
 const port = process.env.PORT || 4000
 createServer(yoga).listen(port, () => console.log(`Server is running on http://localhost:${port}`))
