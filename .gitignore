@@ -1,2 +1,4 @@
-"prisma/dev.db"
-"src/utils.js"
+node_modules/
+.env
+*.db
+*.db-journal
