@@ -76,7 +76,7 @@ model Unit {
   building      Building    @relation(fields: [buildingId], references: [id])
   owner         Owner[]
   tenant        Tenant[]
-  lease         Lease
+  lease         Lease?
   pets          Boolean?
   dogBreed      String?
   storageL      Boolean? // Storage Locker
@@ -106,7 +106,7 @@ model Lease {
   id               Int       @default(autoincrement()) @id
   createdAt        DateTime  @default(now())
   unit             Unit      @relation(fields: [unitId], references: [id])
-  unitId           Int
+  unitId           Int       @unique
   term             DateTime?
   amount           Float?
   extension        String?
